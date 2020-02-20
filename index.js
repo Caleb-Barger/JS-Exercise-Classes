@@ -222,7 +222,30 @@ class Student extends Lambdasian {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+
+const pmAttribs = {
+  name : "Anthony",
+  age : "somewhere in his 20's",
+  location : "!!!LAS-VEGAS!!!",
+  specialty : "The Cold Brew",
+  favLanguage : "Probably Python",
+  catchPhrase : "Get Gud U Scrubz",
+  gradClassName : "LSFT06",
+  favInstructor : "Steven",
+}
+
+class ProjectManager extends Instructor{
+  constructor(pmAttribs) {
+    super(pmAttribs);
+    this.gradClassName = pmAttribs.gradClassName;
+    this.favInstructor = pmAttribs.favInstructor;
+  }
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 
 }
 
