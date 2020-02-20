@@ -140,8 +140,29 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
 
+const instructorAttribs = {
+    name : "Car",
+    age : 0,
+    location : "Canada",
+    specialty : "Making Pancakes",
+    favLanguage : "C++",
+    catchPhrase : "KA-CHOW",
+};
+
+class Instructor extends Lambdasian{
+  constructor(instructorAttribs) {
+    super(instructorAttribs);
+    this.specialty = instructorAttribs.specialty;
+    this.favLanguage = instructorAttribs.favLanguage;
+    this.catchPhrase = instructorAttribs.catchPhrase;
+  }
+  demo(subject) {
+    return `Today we are learning about ${subject}`;
+  }
+  grade(student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
 }
 
 /*
@@ -159,7 +180,32 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
+
+const studentAttribs = {
+  name : "Caleb",
+  age : 18,
+  location : "US",
+  previousBackground : "Student at GHS",
+  className : "LSPT15",
+  favSubjects : ["less", "HTML", "JS"],
+}
+
+class Student extends Lambdasian {
+  constructor(studentAttribs) {
+    super(studentAttribs);
+    this.previousBackground = studentAttribs.previousBackground;
+    this.className = studentAttribs.className;
+    this.favSubjects = studentAttribs.favSubjects;
+  }
+  listSubjects() {
+    return `Loving ${this.favSubjects[0]}, ${this.favSubjects[1]}, ${this.favSubjects[2]}!`;
+  }
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challebge on ${subject}`;
+  }
 
 }
 
