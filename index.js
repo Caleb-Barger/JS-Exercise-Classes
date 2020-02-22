@@ -41,7 +41,22 @@ class Airplane {
 */
 
 class Person {
-
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  eat(someFood) {
+    if (this.stomach.length < 10) {
+      this.stomach.push(someFood);
+    }
+  }
+  poop() {
+    this.stomach = [];
+  }
+  toString() {
+    return `${this.name}, ${this.age}`;
+  }
 }
 
 /*
@@ -59,7 +74,25 @@ class Person {
 */
 
 class Car {
-
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons) {
+    this.tank += gallons;
+  }
+  drive(distance) {
+    this.odometer += distance;
+    this.tank -= distance/this.milesPerGallon;
+  
+    if (this.tank < 0) { 
+      this.odometer += Math.floor(this.tank);
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+  }
 }
 
 /*
@@ -74,7 +107,22 @@ class Car {
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
+
+const lambdasianAttribs = {
+  name : "Car",
+  age : 0,
+  location : "Canada",
+}
+
 class Lambdasian {
+  constructor(lambdasianAttribs) {
+    this.name = lambdasianAttribs.name;
+    this.age = lambdasianAttribs.age;
+    this.location = lambdasianAttribs.location;
+  }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 
 }
 
@@ -92,8 +140,29 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
 
+const instructorAttribs = {
+    name : "Car",
+    age : 0,
+    location : "Canada",
+    specialty : "Making Pancakes",
+    favLanguage : "C++",
+    catchPhrase : "KA-CHOW",
+};
+
+class Instructor extends Lambdasian{
+  constructor(instructorAttribs) {
+    super(instructorAttribs);
+    this.specialty = instructorAttribs.specialty;
+    this.favLanguage = instructorAttribs.favLanguage;
+    this.catchPhrase = instructorAttribs.catchPhrase;
+  }
+  demo(subject) {
+    return `Today we are learning about ${subject}`;
+  }
+  grade(student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
 }
 
 /*
@@ -111,7 +180,32 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
+
+const studentAttribs = {
+  name : "Caleb",
+  age : 18,
+  location : "US",
+  previousBackground : "Student at GHS",
+  className : "LSPT15",
+  favSubjects : ["less", "HTML", "JS"],
+}
+
+class Student extends Lambdasian {
+  constructor(studentAttribs) {
+    super(studentAttribs);
+    this.previousBackground = studentAttribs.previousBackground;
+    this.className = studentAttribs.className;
+    this.favSubjects = studentAttribs.favSubjects;
+  }
+  listSubjects() {
+    return `Loving ${this.favSubjects[0]}, ${this.favSubjects[1]}, ${this.favSubjects[2]}!`;
+  }
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challebge on ${subject}`;
+  }
 
 }
 
@@ -128,7 +222,30 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+
+const pmAttribs = {
+  name : "Anthony",
+  age : "somewhere in his 20's",
+  location : "!!!LAS-VEGAS!!!",
+  specialty : "The Cold Brew",
+  favLanguage : "Probably Python",
+  catchPhrase : "Get Gud U Scrubz",
+  gradClassName : "LSFT06",
+  favInstructor : "Steven",
+}
+
+class ProjectManager extends Instructor{
+  constructor(pmAttribs) {
+    super(pmAttribs);
+    this.gradClassName = pmAttribs.gradClassName;
+    this.favInstructor = pmAttribs.favInstructor;
+  }
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 
 }
 
